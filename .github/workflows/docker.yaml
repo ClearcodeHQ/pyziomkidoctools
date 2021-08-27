@@ -7,8 +7,6 @@ name: Publish Docker image
 
 on:
   push:
-    branches:
-      - main
     tags:
       - v*
 
@@ -25,8 +23,10 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: clearcode/pyziomkidoctools
-          tags: type=pep440,pattern={{version}}
-          flavor: latest=true
+          flavor: |
+            latest=true
+          tags: |
+            type=pep440,pattern={{version}}
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
