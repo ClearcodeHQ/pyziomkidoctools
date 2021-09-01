@@ -10,10 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Build Docker image
+      - name: Build doctools docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: false
           file: Dockerfile.doctools
-          tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Build Releasetools docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: false
+          file: Dockerfile.releasetools

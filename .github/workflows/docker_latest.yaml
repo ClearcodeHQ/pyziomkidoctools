@@ -24,10 +24,18 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
-      - name: Build and push Docker image
+      - name: Build and push Docktools docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
           file: Dockerfile.doctools
           tags: clearcode/pyziomkidoctools:latest
+
+      - name: Build and push Releasetools docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: Dockerfile.releasetools
+          tags: clearcode/pyziomkireleasetools:latest
