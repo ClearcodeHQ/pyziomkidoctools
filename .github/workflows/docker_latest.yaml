@@ -7,26 +7,16 @@ name: Publish Docker image
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - main
 
 jobs:
-  push_to_registry:
+  push_doctools_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: clearcode/pyziomkidoctools
-          flavor: |
-            latest=true
-          tags: |
-            type=pep440,pattern={{version}}
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -39,4 +29,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          file: Dockerfile.doctools
+          tags: clearcode/pyziomkidoctools:latest
