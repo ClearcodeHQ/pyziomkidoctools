@@ -53,7 +53,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: clearcode/releasetools
+          images: clearcode/pyziomkireleasetools
           flavor: |
             latest=true
           tags: |
