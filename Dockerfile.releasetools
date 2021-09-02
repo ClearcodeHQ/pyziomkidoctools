@@ -1,0 +1,5 @@
+FROM python:3.9.7-slim-buster
+
+COPY requirements.releasetools.txt .
+RUN python3 -m pip install --no-cache-dir -r requirements.releasetools.txt
+RUN rm requirements.releasetools.txt
