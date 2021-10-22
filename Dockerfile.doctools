@@ -3,7 +3,7 @@ FROM sphinxdoc/sphinx:4.1.2
 WORKDIR /docs
 
 # install terraform-docs
-RUN apt-get update && apt-get install -y --no-install-recommends curl=7.64.0-4+deb10u2 && \
+RUN apt-get update && apt-get install -y --no-install-recommends curl && \
     curl -Lo /tmp/terraform-docs.tar.gz "https://github.com/terraform-docs/terraform-docs/releases/download/v0.16.0/terraform-docs-v0.16.0-$(uname)-amd64.tar.gz" && \
     tar -xzf /tmp/terraform-docs.tar.gz -C /tmp && \
     chmod +x /tmp/terraform-docs && \
