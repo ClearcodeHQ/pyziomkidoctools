@@ -1,5 +1,8 @@
 FROM sphinxdoc/sphinx:4.1.2
 
+WORKDIR /docs
+
 COPY requirements.doctools.txt .
-RUN python3 -m pip install --no-cache-dir -r requirements.doctools.txt
-RUN rm requirements.doctools.txt
+
+RUN python3 -m pip install --no-cache-dir -r requirements.doctools.txt && \
+    rm requirements.doctools.txt
