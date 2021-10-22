@@ -7,6 +7,7 @@ Dockers with embedd tools used by Pyziomki team at Clearcode
 Based of off [sphinxdoc/sphinx](https://hub.docker.com/r/sphinxdoc/sphinx) with additional dependencies 
 
 * installed [myst-parser](https://myst-parser.readthedocs.io/en/latest/) for rendering markdown documents
+* installed [terraform-docs](https://github.com/terraform-docs/terraform-docs) for creating automatic terraform module documentation
 
 ## pyziomkireleasetools
 

@@ -1,5 +1,19 @@
 FROM sphinxdoc/sphinx:4.1.2
 
+WORKDIR /docs
+
+# install terraform-docs
+RUN apt-get update && apt-get install -y --no-install-recommends curl && \
+    curl -Lo /tmp/terraform-docs.tar.gz "https://github.com/terraform-docs/terraform-docs/releases/download/v0.16.0/terraform-docs-v0.16.0-$(uname)-amd64.tar.gz" && \
+    tar -xzf /tmp/terraform-docs.tar.gz -C /tmp && \
+    chmod +x /tmp/terraform-docs && \
+    mv /tmp/terraform-docs /usr/local/bin/terraform-docs && \
+    rm /tmp/terraform-docs.tar.gz && \
+    apt-get remove -y curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY requirements.doctools.txt .
-RUN python3 -m pip install --no-cache-dir -r requirements.doctools.txt
-RUN rm requirements.doctools.txt
+
+RUN python3 -m pip install --no-cache-dir -r requirements.doctools.txt && \
+    rm requirements.doctools.txt
