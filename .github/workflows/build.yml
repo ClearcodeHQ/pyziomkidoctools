@@ -11,14 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Build doctools docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           push: false
           file: Dockerfile.doctools
 
       - name: Build Releasetools docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           push: false
