@@ -5,8 +5,21 @@ on:
     branches: [ main ]
 
 jobs:
-  automerge:
-    uses: fizyk/actions-reuse/.github/workflows/automerge-shared.yml@v1.7.1
-    secrets:
-      app_id: ${{ secrets.MERGE_APP_ID }}
-      private_key: ${{ secrets.MERGE_APP_PRIVATE_KEY }}
+  build:
+    name: Build Docker image with pyziomki's dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.1.0
+      - name: Build doctools docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: false
+          file: Dockerfile.doctools
+
+      - name: Build Releasetools docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: false
+          file: Dockerfile.releasetools
