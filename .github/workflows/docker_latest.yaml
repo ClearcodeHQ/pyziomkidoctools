@@ -25,7 +25,7 @@ jobs:
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
       - name: Build and push Docktools docker image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           push: true
@@ -33,7 +33,7 @@ jobs:
           tags: clearcode/pyziomkidoctools:latest
 
       - name: Build and push Releasetools docker image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           push: true
