@@ -9,7 +9,7 @@ jobs:
     name: Build Docker image with pyziomki's dependencies
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v3.6.0
       - name: Build doctools docker image
         uses: docker/build-push-action@v4
         with:
