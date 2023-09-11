@@ -16,7 +16,6 @@ Based of off [sphinxdoc/sphinx](https://hub.docker.com/r/sphinxdoc/sphinx) with 
 Clean python based docker with:
 
 * towncrier
-* bump2version (planned)
 
 # Release process
 
