@@ -2,19 +2,24 @@ FROM sphinxdoc/sphinx:7.1.2
 
 WORKDIR /docs
 
-# install terraform-docs
-RUN apt-get update && apt-get install -y --no-install-recommends curl chromium && \
-    curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
-    apt-get update && apt-get install -y nodejs && \
+# install dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl gnupg chromium && \
+    # nodejs
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
+    apt-get update && apt-get install -y nodejs npm && \
+    # terraform
     curl -Lo /tmp/terraform-docs.tar.gz "https://github.com/terraform-docs/terraform-docs/releases/download/v0.16.0/terraform-docs-v0.16.0-$(uname)-amd64.tar.gz" && \
     tar -xzf /tmp/terraform-docs.tar.gz -C /tmp && \
     chmod +x /tmp/terraform-docs && \
     mv /tmp/terraform-docs /usr/local/bin/terraform-docs && \
     rm /tmp/terraform-docs.tar.gz && \
-
-    apt-get remove -y curl && \
+    # cleanup
+    apt-get remove -y curl gnupg && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+RUN npm -v
 
 COPY requirements.doctools.txt .
 
